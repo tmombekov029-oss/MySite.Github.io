@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Настройка аудита — Oracle Auditing Docs</title>
+<link rel="stylesheet" href="styles.css">
+<script defer src="script.js"></script>
+</head>
+<body>
+<header>
+Документация: Аудит Oracle Database
+<div class="theme-toggle">🌗 Тема</div>
+</header>
+
+<div class="search-box">
+<input class="search-input" type="text" placeholder="Поиск по документации...">
+</div>
+
+<div class="breadcrumbs">
+<a href="index.html">Главная</a> &gt; <span>Настройка аудита</span>
+</div>
+
+<div class="container">
+<nav>
+<h3>Разделы</h3>
+<a href="index.html">Введение</a>
+<a href="audit_types.html">Типы аудита</a>
+<a href="setup.html" class="active">Настройка аудита</a>
+<a href="examples.html">Примеры SQL</a>
+</nav>
+
+<main>
+<h1>Настройка аудита</h1>
+
+<h2>Проверка Unified Auditing</h2>
+<pre>SELECT VALUE FROM V$OPTION WHERE PARAMETER = 'Unified Auditing';</pre>
+
+<h2>Создание политики</h2>
+<pre>CREATE AUDIT POLICY emp_read_write
+  ACTIONS SELECT, INSERT ON hr.employees;</pre>
+
+<h2>Включение политики</h2>
+<pre>AUDIT POLICY emp_read_write;</pre>
+
+<h2>Просмотр аудита</h2>
+<pre>SELECT event_timestamp, username, action_name
+FROM unified_audit_trail
+ORDER BY event_timestamp DESC;</pre>
+</main>
+</div>
+</body>
+</html>

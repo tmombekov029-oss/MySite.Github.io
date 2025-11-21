@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>FGA — Примеры</title>
+<link rel="stylesheet" href="../../styles.css">
+<script defer src="../../script.js"></script>
+</head>
+<body>
+<header>
+<h1>FGA — Примеры</h1>
+<div class="theme-toggle">🌗 Тема</div>
+</header>
+
+<div class="breadcrumbs">
+<a href="../../index.html">Главная</a> &gt; 
+<a href="../index.html">Типы аудита</a> &gt; 
+<a href="index.html">FGA — Введение</a> &gt;
+<span>Примеры</span>
+</div>
+
+<div class="container">
+<nav class="sidebar">
+<h3>Разделы FGA</h3>
+<a href="index.html">Введение</a>
+<a href="conditions.html">Условия</a>
+<a href="examples.html" class="active">Примеры</a>
+</nav>
+
+<main>
+<h2>Примеры FGA</h2>
+
+<h3>Аудит SELECT по условию</h3>
+<pre><code>
+BEGIN
+  DBMS_FGA.add_policy(
+    object_schema => 'HR',
+    object_name => 'EMPLOYEES',
+    policy_name => 'SALARY_OVER_50000',
+    audit_condition => 'SALARY &gt; 50000',
+    audit_column => 'SALARY'
+  );
+END;
+/
+</code></pre>
+
+<h3>Просмотр аудита</h3>
+<pre><code>
+SELECT timestamp, db_user, sql_text
+FROM dba_fga_audit_trail
+WHERE object_name = 'EMPLOYEES'
+ORDER BY timestamp DESC;
+</code></pre>
+</main>
+</div>
+</body>
+</html>

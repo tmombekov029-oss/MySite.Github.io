@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Стандартный аудит — Oracle Auditing Docs</title>
+<link rel="stylesheet" href="../styles.css">
+<script defer src="../script.js"></script>
+</head>
+<body>
+<header>
+Документация: Аудит Oracle Database
+<div class="theme-toggle">🌗 Тема</div>
+</header>
+
+<div class="search-box">
+<input class="search-input" type="text" placeholder="Поиск по документации...">
+</div>
+
+<div class="breadcrumbs">
+<a href="../index.html">Главная</a> &gt; 
+<a href="index.html">Типы аудита</a> &gt; 
+<span>Стандартный аудит</span>
+</div>
+
+<div class="container">
+<nav>
+<h3>Подразделы</h3>
+<a href="index.html">Типы аудита</a>
+<a href="standard_audit.html" class="active">Стандартный аудит</a>
+<a href="unified_audit.html">Unified Auditing</a>
+<a href="fga.html">Fine-Grained Auditing</a>
+</nav>
+
+<main>
+<h1>Стандартный аудит</h1>
+
+<p>Стандартный аудит в Oracle Database — это исторический механизм аудита через таблицу <code>SYS.AUD$</code>. Он позволяет отслеживать:</p>
+<ul>
+<li>Создание/удаление объектов</li>
+<li>Изменения привилегий</li>
+<li>Входы пользователей (CREATE SESSION)</li>
+<li>DML операции</li>
+</ul>
+
+<h2>Настройка стандартного аудита</h2>
+<p>Примеры команд:</p>
+<pre>AUDIT SELECT ON hr.employees;</pre>
+<pre>AUDIT INSERT, UPDATE ON hr.departments;</pre>
+
+<h2>Просмотр аудита</h2>
+<pre>SELECT * FROM SYS.AUD$ ORDER BY NTIMESTAMP# DESC;</pre>
+
+<h2>Особенности</h2>
+<ul>
+<li>Все события сохраняются в SYS.AUD$</li>
+<li>Не поддерживает сложные условия на колонки (для этого нужен FGA)</li>
+<li>Можно комбинировать с Unified Auditing после миграции</li>
+</ul>
+</main>
+</div>
+</body>
+</html>
